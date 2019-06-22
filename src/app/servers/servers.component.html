@@ -1,7 +1,32 @@
-<p>
-  servers works!
-</p>
-<hr>
-<app-server></app-server>
-<hr>
-<app-server></app-server>
+<div class="contianer">
+  <div class="row">
+    <div class="col-xs-12">
+        <label>Server name: </label>
+        <!-- <input 
+          type="text" 
+          class="form-control"
+          (input)="onUpdateServerName($event)"> -->
+        <!-- Two way binding -->
+          <input 
+          type="text" 
+          class="form-control"
+          [(ngModel)]="serverName"> 
+        <!-- <p>{{ this.serverName }}</p> -->
+        <br>
+        <button 
+        class="btn btn-primary" 
+        [disabled]="this.serverName === ''" 
+        (click)="onCreateServer(); this.serverName = ''">Add Server</button>
+        <!-- <p [innerText]="this.allowNewServer"></p> -->
+        <p *ngIf="this.serverCreated; else noServer">{{ this.serverCreationStatus }}</p>
+        <ng-template #noServer>
+          <p>No server Created!</p>
+        </ng-template>
+        <hr>
+        <app-server></app-server>
+        <hr>
+        <app-server></app-server>
+    </div>
+  </div>
+</div>
+
